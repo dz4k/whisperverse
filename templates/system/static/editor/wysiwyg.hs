@@ -15,6 +15,9 @@ behavior wysiwyg(name)
 
 	-- Clicking a toolbar button triggers a command on the content
 	on click from <button />
+		if closest <.wysiwyg /> to target is not me then
+			exit
+		end
 		set command to target's [@data-command]
 		if command is not null then 
 			set value to target's [@data-command-value]
@@ -22,12 +25,19 @@ behavior wysiwyg(name)
 		end
 
 	-- Show the toolbar when focused
-	on focus from <.wysiwyg-editor />
-		remove [@hidden] from element toolbar
+	on focus(target) from <.wysiwyg-editor />
+		if I am closest <.wysiwyg /> to target
+			remove [@hidden] from element toolbar
+		end
 
 	-- Hide the toolbar when blured
-	on blur from <.wysiwyg-editor />
-		add [@hidden=true] to element toolbar
+	on focusout from <.wysiwyg-editor />
+		if I am closest <.wysiwyg /> to target
+			wait 200ms
+			if (<:focus/> in me) is empty then
+				add [@hidden=true] to element toolbar
+			end
+		end
 
 	-- Autosave the WYSIWYG after 15s of inactivity
 	on input debounced at 15s

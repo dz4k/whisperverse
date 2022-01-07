@@ -17,7 +17,7 @@ div.nebula-layout {
 	position:relative;
 	align-items:stretch;
 	align-content: top;
-	margin:10px;
+	margin-top:10px;
 	background-color:var(--gray15);
 }
 
@@ -29,10 +29,6 @@ div.nebula-layout[data-style=COLS] {
 	flex-direction:row;
 }
 
-div.nebula-layout div.nebula-layout {
-	margin:0px;
-} 
-
 /***************************
  * LAYOUT CONTROLS
  ***************************/
@@ -41,7 +37,7 @@ div.nebula-layout div.nebula-layout {
 	display:none;
 }
 
-.nebula-layout-item > .nebula-layout-controls {
+.nebula-layout-item:hover > .nebula-layout-controls {
 	display:block;
 	position: absolute;
 	top: 0px;
@@ -50,10 +46,10 @@ div.nebula-layout div.nebula-layout {
 	overflow-x:hidden;
 	z-index: 10;
 	border: solid 1px var(--gray40);
-	background-color: var(--gray10);
+	background-color: var(--gray05);
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
-	color: var(--gray50);
+	color: var(--gray40);
 }
 
 .nebula-layout-controls > div:hover {
@@ -86,58 +82,8 @@ div.nebula-layout div.nebula-layout {
 div.nebula-layout-item {
 	position:relative;
 	background-color:var(--gray05);
-	margin: 10px;
+	margin-bottom: 10px;
 	display: flex;
-}
-
-div.nebula-layout[data-style=COLS] > div.nebula-layout-item {
-	margin-left: 10px;
-}
-
-div.nebula-layout[data-style=ROWS] > div.nebula-layout-item {
-	margin-top: 10px;
-}
-
-div.nebula-layout[data-style=COLS] > div.nebula-layout-item:not(:first-of-type) {
-	margin-left: 0px;
-}
-
-div.nebula-layout[data-style=ROWS] > div.nebula-layout-item:not(:first-of-type) {
-	margin-top: 0px;
-}
-
-/** Special rules for Rows IN Columns **/
-div.nebula-layout[data-style=COLS] > div.nebula-layout-item > div.nebula-layout[data-style=ROWS] > div.nebula-layout-item:first-of-type{
-	margin-top: 0px;
-}
-
-div.nebula-layout[data-style=COLS] > div.nebula-layout-item > div.nebula-layout[data-style=ROWS] > div.nebula-layout-item:first-of-type > span.nebula-layout-insert[data-place=ABOVE] {
-	display:none;
-}
-
-div.nebula-layout[data-style=COLS] > div.nebula-layout-item > div.nebula-layout[data-style=ROWS] > div.nebula-layout-item:last-of-type{
-	margin-bottom: 0px;
-}
-
-div.nebula-layout[data-style=COLS] > div.nebula-layout-item > div.nebula-layout[data-style=ROWS] > div.nebula-layout-item:last-of-type > span.nebula-layout-insert[data-place=BELOW] {
-	display:none;
-}
-
-/** Special rules for Columns IN Rows **/
-div.nebula-layout[data-style=ROWS] > div.nebula-layout-item > div.nebula-layout[data-style=COLS] > div.nebula-layout-item:first-of-type {
-	margin-left: 0px;
-}
-
-div.nebula-layout[data-style=ROWS] > div.nebula-layout-item > div.nebula-layout[data-style=COLS] > div.nebula-layout-item:first-of-type > span.nebula-layout-insert[data-place=LEFT] {
-	display:none;
-}
-
-div.nebula-layout[data-style=ROWS] > div.nebula-layout-item > div.nebula-layout[data-style=COLS] > div.nebula-layout-item:last-of-type{
-	margin-right: 0px;
-}
-
-div.nebula-layout[data-style=ROWS] > div.nebula-layout-item > div.nebula-layout[data-style=COLS] > div.nebula-layout-item:last-of-type > span.nebula-layout-insert[data-place=RIGHT] {
-	display:none;
 }
 
 /***************************
@@ -171,20 +117,6 @@ div.nebula-layout[data-style=ROWS] > div.nebula-layout-item > div.nebula-layout[
 	right:0px;
 }
 
-.nebula-layout-insert[data-place=LEFT] {
-	left:-10px;
-	top:0px;
-	bottom:0px;
-	width:10px;
-}
-
-.nebula-layout-insert[data-place=RIGHT] {
-	right:-10px;
-	top:0px;
-	bottom:0px;
-	width:10px;
-}
-
 
 /***************************
  * WYSIWYG
@@ -200,17 +132,20 @@ div.nebula-layout[data-style=ROWS] > div.nebula-layout-item > div.nebula-layout[
 
 .wysiwyg-toolbar {
 	position: absolute;
-	top: -40px;
+	top: -50px;
 	width:100%;
 	z-index:3;
 	display:block;
 	padding:5px 0px 10px 0px;
 	white-space: nowrap;
 	overflow-x: scroll;
+	border: solid 1px var(--gray30);
+	background-color:var(--gray10);
+	box-shadow: 0px -10px 10px 0px rgba(0,0,0,0.2);
 }
 
 .wysiwyg-toolbar-group {
-	margin-right: 10px;
+	margin-left: 10px;
 }
 
 .wysiwyg-toolbar button {
@@ -218,6 +153,7 @@ div.nebula-layout[data-style=ROWS] > div.nebula-layout-item > div.nebula-layout[
 	padding:8px 10px;
 	border: solid 1px var(--gray20);
 	border-radius:0px;
+	background-color:var(--white);
 }
 
 .wysiwyg-toolbar button:hover {
