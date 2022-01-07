@@ -90,7 +90,7 @@ func (step StepEditContent) Post(buffer io.Writer, renderer Renderer) error {
 
 	// Try to execute the transaction
 	container := getterSetter.GetContainer()
-	changedID, err := container.Execute(step.contentLibrary, body)
+	changedID, err := container.Post(step.contentLibrary, body)
 
 	if err != nil {
 		return derp.Wrap(err, "ghost.render.StepEditContent.Post", "Error executing content action")
