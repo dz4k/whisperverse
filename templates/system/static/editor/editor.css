@@ -38,17 +38,17 @@ div.nebula-layout[data-style=COLS] {
 }
 
 .nebula-layout-item:hover > .nebula-layout-controls {
-	display:block;
+	display:flex;
+	flex-direction:row;
 	position: absolute;
-	top: 0px;
-	left: -29px;
-	width: 30px;
+	top: -33px;
+	left: 0px;
 	overflow-x:hidden;
-	z-index: 10;
+	z-index: 2;
 	border: solid 1px var(--gray40);
 	background-color: var(--gray05);
 	border-top-left-radius: 5px;
-	border-bottom-left-radius: 5px;
+	border-top-right-radius: 5px;
 	color: var(--gray40);
 }
 
@@ -58,12 +58,12 @@ div.nebula-layout[data-style=COLS] {
 
 .nebula-layout-sortable-handle {
 	cursor: grab;
-	padding: 8px 4px;
+	padding: 2px 10px;
 }
 
 .nebula-layout-delete {
 	cursor: pointer;
-	padding: 4px;
+	padding: 2px 10px;
 }
 
 /***************************
@@ -71,8 +71,9 @@ div.nebula-layout[data-style=COLS] {
  ***************************/
 
  .nebula-layout-sortable-ghost {
-	opacity:0.5;
+	opacity:0.3;
 	background-color:black;
+	border: solid 1x purple;
 }
 
 /***************************
@@ -139,9 +140,8 @@ div.nebula-layout-item {
 	padding:5px 0px 10px 0px;
 	white-space: nowrap;
 	overflow-x: scroll;
-	border: solid 1px var(--gray30);
+	border: solid 1px cornflowerblue;
 	background-color:var(--gray10);
-	box-shadow: 0px -10px 10px 0px rgba(0,0,0,0.2);
 }
 
 .wysiwyg-toolbar-group {

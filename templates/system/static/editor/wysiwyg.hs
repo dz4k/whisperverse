@@ -14,29 +14,34 @@ behavior wysiwyg(name)
 		add [@contentEditable=true] to element editor
 
 	-- Clicking a toolbar button triggers a command on the content
-	on click from <button />
-		if closest <.wysiwyg /> to target is not me then
+	on click(target) from <button /> in me
+
+		set command to target's [@data-command]
+
+		if command is null then
 			exit
 		end
-		set command to target's [@data-command]
-		if command is not null then 
-			set value to target's [@data-command-value]
-			call document.execCommand(command, false, value)
+
+		-- special handling for inertLink
+		if command is "insertLink" then
+			call prompt("Enter Link URL")
+			call document.execCommand("insertLink", false, it)
+			exit
 		end
+
+		-- fall through to all other commands
+		set value to target's [@data-command-value]
+		call document.execCommand(command, false, value)
 
 	-- Show the toolbar when focused
-	on focus(target) from <.wysiwyg-editor />
-		if I am closest <.wysiwyg /> to target
-			remove [@hidden] from element toolbar
-		end
+	on focus(target) from <.wysiwyg-editor /> in me
+		remove [@hidden] from element toolbar
 
 	-- Hide the toolbar when blured
-	on focusout from <.wysiwyg-editor />
-		if I am closest <.wysiwyg /> to target
-			wait 200ms
-			if (<:focus/> in me) is empty then
-				add [@hidden=true] to element toolbar
-			end
+	on blur from <.wysiwyg-editor /> in me
+		wait 200ms
+		if (<:focus/> in me) is empty then
+			add [@hidden=true] to element toolbar
 		end
 
 	-- Autosave the WYSIWYG after 15s of inactivity
