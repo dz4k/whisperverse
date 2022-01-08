@@ -14,18 +14,21 @@ behavior wysiwyg(name)
 		add [@contentEditable=true] to element editor
 
 	-- Clicking a toolbar button triggers a command on the content
-	on click(target) from <button /> in me
+	on click(target)
+
+		if target's [@data-command] is null then 
+			set target to closest <[data-command]/> to target
+			if target is null then
+				exit
+			end
+		end
 
 		set command to target's [@data-command]
 
-		if command is null then
-			exit
-		end
-
 		-- special handling for inertLink
-		if command is "insertLink" then
-			call prompt("Enter Link URL")
-			call document.execCommand("insertLink", false, it)
+		if command is "createLink" then
+			get prompt("Enter Link URL")
+			call document.execCommand(command, false, result)
 			exit
 		end
 

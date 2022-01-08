@@ -41,7 +41,7 @@ div.nebula-layout[data-style=COLS] {
 	display:flex;
 	flex-direction:row;
 	position: absolute;
-	top: -33px;
+	top: -23px;
 	left: 0px;
 	overflow-x:hidden;
 	z-index: 2;
@@ -59,6 +59,10 @@ div.nebula-layout[data-style=COLS] {
 .nebula-layout-sortable-handle {
 	cursor: grab;
 	padding: 2px 10px;
+}
+
+.nebula-layout-sortable-handle:active {
+	cursor: grabbing;
 }
 
 .nebula-layout-delete {
@@ -104,14 +108,14 @@ div.nebula-layout-item {
 	z-index:4;
 }
 
-.nebula-layout-insert[data-place=ABOVE] {
+.nebula-layout-insert[data-place=BEFORE] {
 	top:-10px;
 	height:10px;
 	left:0px;
 	right:0px;
 }
 
-.nebula-layout-insert[data-place=BELOW]{
+.nebula-layout-insert[data-place=AFTER]{
 	bottom:-10px;
 	height:10px;
 	left:0px;
