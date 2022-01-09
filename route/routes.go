@@ -2,7 +2,6 @@ package route
 
 import (
 	"net/http"
-	"net/url"
 
 	"github.com/benpate/derp"
 	"github.com/benpate/ghost/handler"
@@ -76,7 +75,7 @@ func New(factoryManager *server.FactoryManager) *echo.Echo {
 
 		// If Forbidden error, then redirect the user to the signin page.
 		if derp.ErrorCode(err) == derp.CodeForbiddenError {
-			ctx.Redirect(http.StatusTemporaryRedirect, "/signin?next="+url.QueryEscape(ctx.Request().RequestURI))
+			ctx.Redirect(http.StatusTemporaryRedirect, "/signin")
 			return
 		}
 
