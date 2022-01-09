@@ -41,7 +41,7 @@ div.nebula-layout[data-style=COLS] {
 	display:flex;
 	flex-direction:row;
 	position: absolute;
-	top: -23px;
+	top: -33px;
 	left: 0px;
 	overflow-x:hidden;
 	z-index: 2;

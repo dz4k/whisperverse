@@ -10,34 +10,37 @@
 <script type="text/hyperscript" src="/static/editor/uploader.hs"></script>
 <script type="text/hyperscript" src="/static/editor/wysiwyg.hs"></script>
 
-<!-- Page Content -->
-<div hx-get="/{{.Token}}/heading" hx-trigger="refreshPage">
-	{{.View "heading"}}
-</div>
+<div class="page">
 
-<div id="menu-bar">
-	<div class="left">
-		<button hx-get="/{{.Token}}/promote-draft" class="button primary">Promote</button>
-		<button hx-get="/{{.Token}}">Save Draft</button>
-		<button hx-get="/{{.Token}}/discard-draft">Discard Draft</button>
+	<div hx-get="/{{.Token}}/heading" hx-trigger="refreshPage">
+		{{.View "heading"}}
 	</div>
 
-	<div class="right">
-		{{- if .UserCan "sharing" -}}
-			<a hx-get="/{{.Token}}/sharing">Sharing</a>
-		{{- end -}}
+	<div id="menu-bar">
+		<div class="left">
+			<button hx-get="/{{.Token}}/promote-draft" class="button primary">Promote</button>
+			<button hx-get="/{{.Token}}">Save Draft</button>
+			<button hx-get="/{{.Token}}/discard-draft">Discard Draft</button>
+		</div>
 
-		{{- if .UserCan "properties" -}}
-			<a hx-get="/{{.Token}}/properties">Info</a>
-		{{- end -}}
+		<div class="right">
+			{{- if .UserCan "sharing" -}}
+				<a hx-get="/{{.Token}}/sharing">Sharing</a>
+			{{- end -}}
 
-		{{- if .UserCan "delete" -}}
-			<a hx-get="/{{.Token}}/delete">Delete</a>
-		{{- end -}}
+			{{- if .UserCan "properties" -}}
+				<a hx-get="/{{.Token}}/properties">Info</a>
+			{{- end -}}
+
+			{{- if .UserCan "delete" -}}
+				<a hx-get="/{{.Token}}/delete">Delete</a>
+			{{- end -}}
+		</div>
+
 	</div>
 
+	<article class="content-editor">
+		{{.ContentEditor}}
+	</article>
+	
 </div>
-
-<article class="content-editor">
-	{{.ContentEditor}}
-</article>
