@@ -45,6 +45,11 @@ func New(factoryManager *server.FactoryManager) *echo.Echo {
 
 	// TODO: Can Attachments and SSE be moved into a custom render step?
 
+	// CONFIG PAGES
+	e.GET("/server", handler.GetServerIndex(factoryManager))
+	e.GET("/server/:server", handler.GetServerDomain(factoryManager))
+	e.POST("/server/:server", handler.PostServerDomain(factoryManager))
+
 	// ADMIN PAGES
 	e.GET("/admin", handler.GetAdmin(factoryManager))
 	e.GET("/admin/:param1", handler.GetAdmin(factoryManager))
